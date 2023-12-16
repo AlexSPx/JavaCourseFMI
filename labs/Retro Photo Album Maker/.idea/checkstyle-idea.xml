@@ -7,13 +7,13 @@
     <copyLibs>true</copyLibs>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="72344234-e059-4bff-9bd7-d47145fb759f" />
+      <option value="ec982020-63b0-4b6d-b755-f2f4c254c8aa" />
     </option>
     <option name="locations">
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
-        <ConfigurationLocation id="72344234-e059-4bff-9bd7-d47145fb759f" type="HTTP_URL" scope="All" description="MJT">https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml</ConfigurationLocation>
+        <ConfigurationLocation id="ec982020-63b0-4b6d-b755-f2f4c254c8aa" type="HTTP_URL" scope="All" description="MJT">https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml</ConfigurationLocation>
       </list>
     </option>
   </component>

@@ -11,6 +11,6 @@ public class Main {
         FileReader reader = new FileReader("fifa_players_clean.csv");
         FootballPlayerAnalyzer analyzer = new FootballPlayerAnalyzer(reader);
 
-        System.out.println(analyzer.getTopProspectPlayerForPositionInBudget(Position.CB, 400000000));
+        System.out.println(analyzer.getTopProspectPlayerForPositionInBudget(Position.RW, 8000000));
     }
 }

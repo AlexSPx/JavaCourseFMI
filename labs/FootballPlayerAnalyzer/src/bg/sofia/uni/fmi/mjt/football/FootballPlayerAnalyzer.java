@@ -68,7 +68,7 @@ public class FootballPlayerAnalyzer {
         return players.stream()
                 .filter(player -> player.nationality().equals(nationality))
                 .max(Comparator.comparing(Player::wageEuro))
-                .orElseThrow(() -> new IllegalArgumentException("No such nationality"));
+                .orElseThrow(() -> new NoSuchElementException("No such nationality"));
     }
 
     /**
@@ -91,6 +91,10 @@ public class FootballPlayerAnalyzer {
                 ));
     }
 
+    private double calculateProspect(Player player) {
+        return (player.overallRating() + player.potential()) / (double) player.age();
+    }
+
     /**
      * Returns an Optional containing the top prospect player in the dataset that can play in the provided position and
      * that can be bought with the provided budget considering the player's value_euro. If no player can be bought with
@@ -105,15 +109,14 @@ public class FootballPlayerAnalyzer {
      * @throws IllegalArgumentException in case the provided position is null or the provided budget is negative
      */
     public Optional<Player> getTopProspectPlayerForPositionInBudget(Position position, long budget) {
-        if(position == null || budget < 0) {
+        if (position == null || budget < 0) {
             throw new IllegalArgumentException();
         }
 
         return players.stream()
-                .filter(player -> player.valueEuro() <= budget && player.positions().contains(position))
-                .max(Comparator.comparing(player ->
-                        (player.potential() + player.overallRating()) / player.age())
-                );
+                .filter(player -> player.valueEuro() <= budget)
+                .filter(player -> player.positions().contains(position))
+                .max(Comparator.comparing(this::calculateProspect));
     }
 
     private Set<Position> getCommonPossitions(Player p1, Player p2) {
@@ -134,15 +137,18 @@ public class FootballPlayerAnalyzer {
      * @throws IllegalArgumentException if the provided player is null
      */
     public Set<Player> getSimilarPlayers(Player player) {
-        if(player == null) {
+        if (player == null) {
             throw new IllegalArgumentException("Player cannot be null");
         }
+
+        final int eplsilon = 3;
+
         return players.stream()
                 .filter(currPlayer ->
                     !getCommonPossitions(player, currPlayer).isEmpty() &&
                             player.preferredFoot().equals(currPlayer.preferredFoot()) &&
-                            currPlayer.overallRating() >= (player.overallRating()-3) &&
-                            currPlayer.overallRating() <= (player.overallRating()+3)
+                            currPlayer.overallRating() >= (player.overallRating() - eplsilon) &&
+                            currPlayer.overallRating() <= (player.overallRating() + eplsilon)
                 ).collect(Collectors.toUnmodifiableSet());
     }
 

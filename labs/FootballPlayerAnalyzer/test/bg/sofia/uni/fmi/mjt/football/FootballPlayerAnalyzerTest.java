@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class FootballPlayerAnalyzerTest {
     private static FootballPlayerAnalyzer analyzer;
 
     @BeforeAll
-    static void init() {
+    void init() {
         String document = "name;full_name;birth_date;age;height_cm;weight_kgs;positions;nationality;overall_rating;potential;value_euro;wage_euro;preferred_foot" + System.lineSeparator() +
                 "L. Messi;Lionel Andrés Messi Cuccittini;6/24/1987;31;170.18;72.1;CF,RW,ST;Argentina;94;94;110500000;565000;Left" + System.lineSeparator() +
                 "C. Eriksen;Christian Dannemann Eriksen;2/14/1992;27;154.94;76.2;CAM,RM,CM;Denmark;88;89;69500000;205000;Right" + System.lineSeparator() +

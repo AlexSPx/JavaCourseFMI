@@ -16,11 +16,13 @@ public record Player(String name, String fullName, LocalDate birthDate, int age,
     public static Player of(String line) {
         final String[] tokens = line.split(ATTRIBUTE_DELIMITER);
 
-        return new Player(tokens[0], tokens[1],
-                LocalDate.parse(tokens[2], DateTimeFormatter.ofPattern("M/d/yyyy")),
-                Integer.parseInt(tokens[3]),
-                Double.parseDouble(tokens[4]), Double.parseDouble(tokens[5]),
-                Arrays.stream(tokens[6].split(","))
+        int index = 0;
+
+        return new Player(tokens[index++], tokens[index++],
+                LocalDate.parse(tokens[index++], DateTimeFormatter.ofPattern("M/d/yyyy")),
+                Integer.parseInt(tokens[index++]),
+                Double.parseDouble(tokens[index++]), Double.parseDouble(tokens[index++]),
+                Arrays.stream(tokens[index++].split(","))
                         .map(positionStr -> {
                             try {
                                 return Position.valueOf(positionStr);
@@ -30,7 +32,8 @@ public record Player(String name, String fullName, LocalDate birthDate, int age,
                         })
                         .filter(Objects::nonNull)
                         .collect(Collectors.toList()),
-                tokens[7], Integer.parseInt(tokens[8]), Integer.parseInt(tokens[9]), Long.parseLong(tokens[10]),
-                Long.parseLong(tokens[11]), Foot.valueOf(tokens[12].toUpperCase()));
+                tokens[index++], Integer.parseInt(tokens[index++]), Integer.parseInt(tokens[index++]),
+                Long.parseLong(tokens[index++]), Long.parseLong(tokens[index++]),
+                Foot.valueOf(tokens[index++].toUpperCase()));
     }
 }
