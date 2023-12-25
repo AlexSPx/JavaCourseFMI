@@ -39,7 +39,7 @@ public class ParallelMonochromeAlbumCreator implements MonochromeAlbumCreator {
         }
 
         ProcessorManager processorManager = new ProcessorManager(imageProcessorsCount);
-        System.out.println(imagesToProcess.size());
+
         while (!images.isEmpty() || images.getLoaded() != imagesToProcess.size() ) {
             processorManager.submit(new ImageProcessor(images.takeImage(), outputDirectory));
         }

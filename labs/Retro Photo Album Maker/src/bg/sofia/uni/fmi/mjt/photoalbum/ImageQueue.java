@@ -26,9 +26,7 @@ public class ImageQueue {
             }
         }
 
-        Image img = images.poll();
-        this.notifyAll();
-        return img;
+        return images.poll();
     }
 
     public boolean isEmpty() {
