@@ -1,7 +1,5 @@
 package bg.sofia.uni.fmi.mjt.photoalbum;
 
-import java.io.IOException;
-
 public interface MonochromeAlbumCreator {
 
     /**
@@ -14,6 +12,6 @@ public interface MonochromeAlbumCreator {
      *                        throw the appropriate exception if there are issues with loading the files.
      * @param outputDirectory the directory where the output b&w images are stored, if it does not exist, it is created.
      */
-    void processImages(String sourceDirectory, String outputDirectory) throws InterruptedException, IOException;
+    void processImages(String sourceDirectory, String outputDirectory);
 
 }

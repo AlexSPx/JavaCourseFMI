@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -225,7 +226,7 @@ public class MJTSpaceScanner implements SpaceScannerAPI {
 
         String mostReliableRocket = getMostReliableRocket(from, to);
 
-        algorithm.encrypt(new ByteArrayInputStream(mostReliableRocket.getBytes()), outputStream);
+        algorithm.encrypt(new ByteArrayInputStream(mostReliableRocket.getBytes(StandardCharsets.UTF_8)), outputStream);
     }
 
     public String getMostReliableRocket(LocalDate from, LocalDate to) {
